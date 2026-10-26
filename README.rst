@@ -56,7 +56,7 @@ Quick Links
 
 `Code examples from manuscript, as an IPython Notebook <https://nbviewer.org/github/powerlaw-devs/powerlaw/blob/ee7dfc61d2683da01760f8fc692f11893c3038a1/manuscript/Manuscript_Code.ipynb>`__ *
 
-* The current version of powerlaw has changed slightly compared to the version that
+\* The current version of powerlaw has changed slightly compared to the version that
 was used in these resources. For the most up-to-date information and tutorials,
 please see the documentation.
 

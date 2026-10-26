@@ -1,6 +1,12 @@
 """
 This script will create all of the figures for the documentation.
 
+Run this script from the root project folder:
+
+$ python3 docs/documentation_figures.py
+
+It will create the image files in .../docs/source/images.
+
 Conventions
 -----------
 
@@ -290,6 +296,75 @@ if __name__ == '__main__':
     savefig('words_generation_10_xmin.png')
     plt.close()
 
+
+    #################################################
+    # Comparing distributions
+    #################################################
+
+    # 1. Comparing blackouts dataset exponential and power law fits
+
+    data = powerlaw.load_test_dataset('blackouts')
+
+    fit = powerlaw.Fit(data)
+
+    fit.plot_pdf(label='Data (PDF)')
+    fit.power_law.plot_pdf(linestyle='--', label='Power law fit (PDF)')
+    fit.exponential.plot_pdf(linestyle='--', label='Exponential fit (PDF)')
+
+    plt.title('blackouts')
+    plt.legend()
+    # For some reason, this plot ends up with weird x labels if you let it
+    # decide automatically, so I just set them here.
+    plt.xlim([1.8e5, 1e7])
+    plt.gcf().set_size_inches((4.5,4.5))
+    savefig('blackouts_compare.png')
+    plt.close()
+
+    print('Comparing distributions #1: blackouts compare')
+    print(fit.distribution_compare('power_law', 'exponential',
+                                   normalized_ratio=True))
+
+    # 2. Comparing words dataset exponential and power law fits
+
+    data = powerlaw.load_test_dataset('words')
+
+    fit = powerlaw.Fit(data, discrete=True)
+
+    fit.plot_pdf(label='Data (PDF)')
+    fit.power_law.plot_pdf(linestyle='--', label='Power law fit (PDF)')
+    fit.exponential.plot_pdf(linestyle='--', label='Exponential fit (PDF)')
+
+    plt.title('words')
+    plt.legend()
+    plt.ylim([1e-10, 1e1])
+    plt.gcf().set_size_inches((4.5,4.5))
+    savefig('words_compare.png')
+    plt.close()
+
+    print('Comparing distributions #2: words compare')
+    print(fit.distribution_compare('power_law', 'exponential',
+                                   normalized_ratio=True))
+
+    # 3. Comparing words dataset exponential and power law fits
+
+    data = powerlaw.load_test_dataset('words')
+
+    fit = powerlaw.Fit(data, discrete=True)
+
+    fit.plot_ccdf(label='Data (CCDF)')
+    fit.power_law.plot_ccdf(linestyle='--', label='Power law fit (CCDF)')
+    fit.lognormal.plot_ccdf(linestyle='--', label='Lognormal fit (CCDF)')
+
+    plt.title('words')
+    plt.legend()
+    #plt.ylim([1e-10, 1e1])
+    plt.gcf().set_size_inches((4.5,4.5))
+    savefig('words_compare_lognormal.png')
+    plt.close()
+
+    print('Comparing distributions #3: words compare lognormal and powerlaw')
+    print(fit.distribution_compare('power_law', 'lognormal',
+                                   normalized_ratio=True))
 
     #################################################
     # Generating data
