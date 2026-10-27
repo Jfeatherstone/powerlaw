@@ -118,7 +118,7 @@ Let's look at another example: the ``words`` dataset.
     import powerlaw
     import matplotlib.pyplot as plt
 
-    # Let's use the blackouts dataset 
+    # Let's use the words dataset 
     data = powerlaw.load_test_dataset('words')
 
     # Remember this is a discrete dataset
@@ -210,7 +210,7 @@ law, if not better. Let's compare the two for the ``words`` dataset.
     import powerlaw
     import matplotlib.pyplot as plt
 
-    # Let's use the blackouts dataset 
+    # Let's use the words dataset 
     data = powerlaw.load_test_dataset('words')
 
     # Remember this is a discrete dataset
